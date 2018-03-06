@@ -1,0 +1,15 @@
+body {
+	padding-top: 50px;
+}
+.wide-modal {
+  width: 90%;
+  margin-left: 5%;
+}
+.letterbody {
+	font-size: x-large;
+	line-height: 150%;
+}
+.letterbody125 {
+	font-size: large;
+	line-height: 125%;
+}

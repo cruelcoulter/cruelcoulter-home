@@ -1,0 +1,70 @@
+/*
+    Document   : family.css
+    Created on : Aug 23, 2012, 10:09:48 PM
+    Author     : DB
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+        .bodyarea {
+            background-color: #f6f8f9;
+        }
+        .maincontent {
+            float: left;
+            width: 500px;
+            
+           
+        }
+        .sidearea {
+            float: left;
+        }
+        p {
+            font-family: 'Source Sans Pro', sans-serif; font-weight: 400;
+        }
+        li {
+            font-family: 'Source Sans Pro', sans-serif; font-weight: 400;
+        }
+        h3 {
+        font-family: 'Germania One';
+        }
+        
+        .hometext { 
+            font-size: 15px; }
+        
+.familytable {
+/*display: table;*/
+padding-top: 60px;
+}
+.familyrow {
+display: table-row;
+}
+.familycell {
+display: table-cell;
+}
+.familylabel {
+font-weight:bold;
+}
+.familydata {
+	padding-left: 20px;
+}
+
+#imagearea {
+float: left;
+margin-left: 20px;
+margin-top: 50px;
+background-color: #f6f8f9;
+}
+
+#textarea {
+float: left;
+/*margin-left: 30px;
+margin-top: 50px;*/
+background-color: #f6f8f9;
+}
+
+#linkarea {
+clear: both;
+background-color: #f6f8f9;
+}
+
+

@@ -1,0 +1,11 @@
+/*
+    Document   : navbar-fixed-top.css
+    Created on : 12/30/14
+    Author     : cruelcoulter
+    Description:
+        Per http://getbootstrap.com/examples/navbar-fixed-top/navbar-fixed-top.css.
+    01/03/15 - removed 'min-height: 2000px;'
+*/
+body {
+  padding-top: 70px;
+}
