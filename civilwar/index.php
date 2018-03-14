@@ -32,7 +32,7 @@ color: #ffffff;
         <link rel="apple-touch-icon-precomposed" sizes="144x144" href="bootstrap-3.0.0/assets/ico/apple-touch-icon-144-precomposed.png" ><link rel="apple-touch-icon-precomposed" sizes="114x114" href="bootstrap-3.0.0/assets/ico/apple-touch-icon-114-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="bootstrap-3.0.0/assets/ico/apple-touch-icon-72-precomposed.png">
         <link rel="apple-touch-icon-precomposed" href="bootstrap-3.0.0/assets/ico/apple-touch-icon-57-precomposed.png">
-        <link rel="shortcut icon" href="bootstrap-3.0.0/assets/ico/favicon.png">      </head>  <body>
+        <link rel="shortcut icon" href="../includes/favicon.png">      </head>  <body>
           <?php
           include 'navbar.php';
           include '../../db_config.php';

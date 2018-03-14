@@ -24,7 +24,7 @@
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="bootstrap-3.0.0/assets/ico/apple-touch-icon-114-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="bootstrap-3.0.0/assets/ico/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed" href="bootstrap-3.0.0/assets/ico/apple-touch-icon-57-precomposed.png">
-<link rel="shortcut icon" href="bootstrap-3.0.0/assets/ico/favicon.png">
+<link rel="shortcut icon" href="../includes/favicon.png">
 <style type="text/css">
 .bd-footer-links li {
     display: inline-block;

@@ -85,7 +85,7 @@ $tags = $tagexecute->fetchAll();
 <link rel="apple-touch-icon-precomposed"
 	href="<?php echo BOOTSTRAP_PATH; ?>assets/ico/apple-touch-icon-57-precomposed.png">
 <link rel="shortcut icon"
-	href="<?php echo BOOTSTRAP_PATH; ?>assets/ico/favicon.png">
+	href="../includes/favicon.png">
 
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>

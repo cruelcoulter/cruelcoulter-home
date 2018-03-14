@@ -42,7 +42,7 @@ require '../../db_config.php';
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo BOOTSTRAP_PATH; ?>assets/ico/apple-touch-icon-114-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo BOOTSTRAP_PATH; ?>assets/ico/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed" href="<?php echo BOOTSTRAP_PATH; ?>assets/ico/apple-touch-icon-57-precomposed.png">
-<link rel="shortcut icon" href="<?php echo BOOTSTRAP_PATH; ?>assets/ico/favicon.png">
+<link rel="shortcut icon" href="../includes/favicon.png">
 <style type="text/css">
 .container {
 padding-top: 30px;
