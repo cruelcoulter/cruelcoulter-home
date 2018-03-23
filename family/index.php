@@ -89,7 +89,7 @@ or die("<p>Error selecting: " . mysqli_error($link) . "</p>");
 
 if (isset($_SESSION['IsLoggedIn']) AND $_SESSION['IsLoggedIn'] == true)
 {
-$query_text = "select family_member.family_member_id, family_member.first_name, UPPER(family.family_name) as family_name, f2.family_name as married_name, (concat (coalesce(family_member.birthdate_est, year(family_member.birthdate), '?'), ' - ', coalesce(family_member.deathdate_est, year(family_member.deathdate), '?'))) as birthdeath, family.family_id from family_member LEFT JOIN family ON family_member.family_id = family.family_id LEFT JOIN family f2 ON family_member.married_name_id = f2.family_id order by family_member.family_id, birthdeath";
+$query_text = "select family_member.family_member_id, family_member.family_member_slug, family_member.first_name, UPPER(family.family_name) as family_name, f2.family_name as married_name, (concat (coalesce(family_member.birthdate_est, year(family_member.birthdate), '?'), ' - ', coalesce(family_member.deathdate_est, year(family_member.deathdate), '?'))) as birthdeath, family.family_id from family_member LEFT JOIN family ON family_member.family_id = family.family_id LEFT JOIN family f2 ON family_member.married_name_id = f2.family_id order by family_member.family_id, birthdeath";
 
         $querystring = "select * from attachment where date_posted BETWEEN DATE_SUB(CURDATE(), INTERVAL ". $monthcount ." MONTH) AND CURDATE()+1 ORDER BY date_posted DESC LIMIT 5";
        $newsresult=mysqli_query($link, $querystring);
@@ -104,7 +104,7 @@ $query_text = "select family_member.family_member_id, family_member.first_name, 
 }
 else
 {
-$query_text = "select family_member.family_member_id, family_member.first_name, UPPER(family.family_name) as family_name, f2.family_name as married_name, (concat (coalesce(family_member.birthdate_est, year(family_member.birthdate), '?'), ' - ', coalesce(family_member.deathdate_est, year(family_member.deathdate), '?'))) as birthdeath, family.family_id from family_member LEFT JOIN family ON family_member.family_id = family.family_id LEFT JOIN family f2 ON family_member.married_name_id = f2.family_id WHERE family_member.access_level = 'PUBLIC' order by family_member.family_id, birthdeath";
+$query_text = "select family_member.family_member_id, family_member.family_member_slug, family_member.first_name, UPPER(family.family_name) as family_name, f2.family_name as married_name, (concat (coalesce(family_member.birthdate_est, year(family_member.birthdate), '?'), ' - ', coalesce(family_member.deathdate_est, year(family_member.deathdate), '?'))) as birthdeath, family.family_id from family_member LEFT JOIN family ON family_member.family_id = family.family_id LEFT JOIN family f2 ON family_member.married_name_id = f2.family_id WHERE family_member.access_level = 'PUBLIC' order by family_member.family_id, birthdeath";
 
        $querystring = "select * from attachment where access_level ='PUBLIC' and date_posted BETWEEN DATE_SUB(CURDATE(), INTERVAL ". $monthcount ." MONTH) AND CURDATE()+1 ORDER BY date_posted DESC LIMIT 5";
        $newsresult=mysqli_query($link, $querystring);
@@ -168,7 +168,7 @@ while ($row = mysqli_fetch_array($result)) {
 	}
 
     if ($current_famcount < 5) {
-	echo "<li><a href=\"family_member\\{$row['family_member_id']}\">
+	echo "<li><a href=\"family_member\\{$row['family_member_slug']}\">
 	{$row['first_name']} {$row['family_name']} {$row['married_name']}</a> {$row['birthdeath']}</li>\n";
     } else {
       //Do nothing if a family has more than five members listed
