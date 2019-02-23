@@ -22,56 +22,56 @@
           <div class="container-fluid">
           <p>The 105th Ohio Volunteer Infantry (or 105th OVI) was an infantry regiment in the Union Army during the American Civil War.</p>
             <div class="row">
-              <div class="col-md-3">Unit</div>
-              <div class="col-md-1">Aug-Sep 1862</div>
-              <div class="col-md-1">Sep-Nov 1862</div>
-              <div class="col-md-1">Nov 1862-Jan 1863</div>
-              <div class="col-md-1">Jan 1863-June 1863</div>
+              <div class="col-md-2">Unit</div>
+              <div class="col-md-2">Aug-Sep 1862</div>
+              <div class="col-md-2">Sep-Nov 1862</div>
+              <div class="col-md-2">Nov 1862-Jan 1863</div>
+              <div class="col-md-2">Jan 1863-June 1863</div>
               <div class="col-md-1">June 1863-Oct 1863</div>
               <div class="col-md-1">Oct 1863-July 1865</div>
             </div>
             <div class="row">
-              <div class="col-md-3">Brigade</div>
-              <div class="col-md-1">33rd - William Terrill</div>
-              <div class="col-md-1">33rd - William Terrill</div>
-              <div class="col-md-1">1st</div>
-              <div class="col-md-1">1st</div>
+              <div class="col-md-2">Brigade</div>
+              <div class="col-md-2">33rd - William Terrill</div>
+              <div class="col-md-2">33rd - William Terrill</div>
+              <div class="col-md-2">1st</div>
+              <div class="col-md-2">1st</div>
               <div class="col-md-1">2nd</div>
               <div class="col-md-1">2nd</div>
             </div>
             <div class="row">
-              <div class="col-md-3">Division</div>
-              <div class="col-md-1">10th - James S. Jackson</div>
-              <div class="col-md-1">10th - James S. Jackson</div>
-              <div class="col-md-1">5th</div>
-              <div class="col-md-1">5th</div>
+              <div class="col-md-2">Division</div>
+              <div class="col-md-2">10th - James S. Jackson</div>
+              <div class="col-md-2">10th - James S. Jackson</div>
+              <div class="col-md-2">5th</div>
+              <div class="col-md-2">5th</div>
               <div class="col-md-1">4th</div>
               <div class="col-md-1">3rd</div>
             </div>
             <div class="row">
-              <div class="col-md-3">Corps</div>
-              <div class="col-md-1">II</div>
-              <div class="col-md-1">II</div>
-              <div class="col-md-1">Center, XIV</div>
-              <div class="col-md-1">XIV</div>
+              <div class="col-md-2">Corps</div>
+              <div class="col-md-2">II</div>
+              <div class="col-md-2">II</div>
+              <div class="col-md-2">Center, XIV</div>
+              <div class="col-md-2">XIV</div>
               <div class="col-md-1">XIV</div>
               <div class="col-md-1">XIV</div>
             </div>
             <div class="row">
-              <div class="col-md-3">Army</div>
-              <div class="col-md-1">Army of the Ohio</div>
-              <div class="col-md-1">Army of the Ohio</div>
-              <div class="col-md-1">Army of the Cumberland</div>
-              <div class="col-md-1">Army of the Cumberland</div>
+              <div class="col-md-2">Army</div>
+              <div class="col-md-2">Army of the Ohio</div>
+              <div class="col-md-2">Army of the Ohio</div>
+              <div class="col-md-2">Army of the Cumberland</div>
+              <div class="col-md-2">Army of the Cumberland</div>
               <div class="col-md-1">Army of the Cumberland</div>
               <div class="col-md-1">Army of the Cumberland</div>
             </div>
             <div class="row">
-              <div class="col-md-3">Significant events</div>
-              <div class="col-md-1">Mustered in August 20, 1862 under command of Col. Albert S. Hall</div>
-              <div class="col-md-1">Battle of Perryville, KY, October 1862</div>
-              <div class="col-md-1">&nbsp;</div>
-              <div class="col-md-1">Stationed in Murfreeesboro, TN</div>
+              <div class="col-md-2">Significant events</div>
+              <div class="col-md-2">Mustered in August 20, 1862 under command of Col. Albert S. Hall</div>
+              <div class="col-md-2">Battle of Perryville, KY, October 1862</div>
+              <div class="col-md-2">&nbsp;</div>
+              <div class="col-md-2">Stationed in Murfreeesboro, TN</div>
               <div class="col-md-1">Battle of Chickamauga, September 1863</div>
               <div class="col-md-1">Seige of Chattanooga; battle of Atlanta; march to the sea</div>
             </div>
