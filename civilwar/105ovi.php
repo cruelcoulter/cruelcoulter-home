@@ -25,7 +25,7 @@
       </head>
       <body>
         <?php include 'navbar.php';?>
-          <div class="container" style="padding-top:48px;" >
+          <div class="container-fluid" style="padding-top:48px;" >
           <p>The 105th Ohio Volunteer Infantry (or 105th OVI) was an infantry regiment in the Union Army during the American Civil War.</p>
             <div class="row">
               <div class="col-md-2">Unit</div>
