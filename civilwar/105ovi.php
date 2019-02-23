@@ -85,7 +85,7 @@
 
 
           </div><!--/.container -->
-                <?php include 'footer.php';?>
+                <?php include '../includes/footer.php';?>
                 <!-- Bootstrap core JavaScript.  -->
                 <!-- Placed at the end of the document so the pages load faster -->
                 <script src="bootstrap-3.0.0/assets/js/jquery.js"></script>
