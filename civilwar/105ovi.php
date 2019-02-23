@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html lang="en"><!-- updated for Bootstrap 3 -->
+<html lang="en">
 <head>    
   <title>The 105th Ohio Volunteer Infantry (OVI)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8" />    
   <!-- Bootstrap core CSS. --> 
   <link href="bootstrap-3.0.0/dist/css/bootstrap.css" rel="stylesheet">
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <link href="css/mymodal.css" rel="stylesheet">
+
+<!--for social media icons-->
+<script src="https://use.fontawesome.com/releases/v5.0.8/js/brands.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js"></script>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
             <script src="bootstrap-3.0.0/assets/js/html5shiv.js"></script>
             <script src="bootstrap-3.0.0/assets/js/respond.min.js"></script>    
@@ -19,7 +25,7 @@
       </head>
       <body>
         <?php include 'navbar.php';?>
-          <div class="container-fluid">
+          <div class="container" style="padding-top:48px;" >
           <p>The 105th Ohio Volunteer Infantry (or 105th OVI) was an infantry regiment in the Union Army during the American Civil War.</p>
             <div class="row">
               <div class="col-md-2">Unit</div>
