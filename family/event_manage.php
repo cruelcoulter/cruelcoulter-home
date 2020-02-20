@@ -40,12 +40,8 @@ require '../../pdo.php';
 		});
 		</script>
 		<!-- Bootstrap core CSS -->
-		<link href="<?php echo BOOTSTRAP_PATH; ?>dist/css/bootstrap.min.css" rel="stylesheet">
-		<link href="<?php echo BOOTSTRAP_PATH; ?>dist/css/bootstrap-theme.min.css" rel="stylesheet">
-		<link
-		href="//fonts.googleapis.com/css?family=Source+Sans+Pro|Germania+One"
-		rel="stylesheet" type="text/css">
-		<link rel="stylesheet" type="text/css" href="family.css">
+		<?php include 'include_fonts_css.php'; ?>
+		
 <style type="text/css">
 .container {
 padding-top: 30px;

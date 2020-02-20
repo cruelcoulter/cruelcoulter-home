@@ -1,7 +1,6 @@
 <?php
 /* 12/15/15 - add helpful labels and instructions*/
 session_start();
-
 require 'functions.php';
 
 if ( ! AmILoggedIn()) {
@@ -10,7 +9,6 @@ if ( ! AmILoggedIn()) {
 }
 
 require '../../db_config.php';
-
 require '../../pdo.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -18,7 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 where tag.tag_id = junc_tag.tag_id order by tag.tag_id";*/
 
 $tagquery = "select * from tag order by tag_text";
-
 
 $tagexecute = $link->prepare($tagquery);
 
@@ -62,13 +59,9 @@ $tags = $tagexecute->fetchAll();
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="utf-8" />
 <!-- Bootstrap core CSS -->
-<link
-	href="<?php echo BOOTSTRAP_PATH; ?>dist/css/bootstrap.css"
-	rel="stylesheet">
-<link
-	href='http://fonts.googleapis.com/css?family=Source+Sans+Pro|Germania+One'
-	rel='stylesheet' type='text/css'>
-<link rel="stylesheet" type="text/css" href="family.css">
+<?PHP require 'include_fonts_css.php'; ?>
+
+
 <title>Manage tags</title><!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
       <script src="<?php echo BOOTSTRAP_PATH; ?>assets/js/html5shiv.js"></script>

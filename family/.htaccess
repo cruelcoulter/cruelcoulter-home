@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteRule ^family_member/([0-9+])/?$ family_detail.php?family_member_id=$1 [NC,L]
+RewriteRule ^family_member/([-a-z0-9]{1,50})/?$ family_detail_slug.php?family_member_slug=$1 [NC,L]

@@ -32,9 +32,8 @@ TODO: change to pdo
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8" />
     <!-- Bootstrap core CSS -->
-    <link href="<?php echo BOOTSTRAP_PATH; ?>dist/css/bootstrap.css" rel="stylesheet">
-	<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro|Germania+One' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" type="text/css" href="family.css">
+    <?PHP require 'include_fonts_css.php'; ?>
+		
 	<link rel="stylesheet" type="text/css" href="navbar-fixed-top.css">
   <!--for social media icons-->
   <script src="https://use.fontawesome.com/releases/v5.0.8/js/brands.js"></script>
@@ -69,7 +68,7 @@ if (ENVIRON == "PROD") {
 </head>
 
 <body>
- <?php include 'familynavbar.php';?>
+ <?php include 'familynavbar_v4.php';?>
 
 <div class="container">
 <div class="jumbotron">

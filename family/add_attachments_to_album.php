@@ -27,9 +27,9 @@ require '../../pdo.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8" />
     <!-- Bootstrap core CSS -->
-    <link href="<?php echo BOOTSTRAP_PATH; ?>dist/css/bootstrap.css" rel="stylesheet">
-	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro|Germania+One' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" type="text/css" href="family.css">
+    <?PHP require 'include_fonts_css.php'; ?>
+	
+	
 <title>Associate Attachments with Album</title>
 
 <?php

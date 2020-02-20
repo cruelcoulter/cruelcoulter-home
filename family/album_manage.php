@@ -33,13 +33,9 @@ require "../../pdo.php";
 		});
 		</script>
 <!-- Bootstrap core CSS -->
-<link
-	href="<?php echo BOOTSTRAP_PATH; ?>dist/css/bootstrap.css"
-	rel="stylesheet">
-<link
-	href='http://fonts.googleapis.com/css?family=Source+Sans+Pro|Germania+One'
-	rel='stylesheet' type='text/css'>
-<link rel="stylesheet" type="text/css" href="family.css">
+<?PHP require 'include_fonts_css.php'; ?>
+
+
 <style type="text/css">
 .container {
 padding-top: 30px;

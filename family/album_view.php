@@ -20,9 +20,9 @@ require "../../pdo.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8" />
     <!-- Bootstrap core CSS -->
-    <link href="<?php echo BOOTSTRAP_PATH; ?>dist/css/bootstrap.css" rel="stylesheet">
-	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro|Germania+One' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" type="text/css" href="family.css">
+    <?PHP require 'include_fonts_css.php'; ?>
+	
+	
 	<link rel="stylesheet" type="text/css" href="navbar-fixed-top.css">
 <title>Family history - Photos</title>
 <?php
@@ -47,7 +47,7 @@ if (ENVIRON == "PROD") {
 
 <body>
  <?php
-include "familynavbar.php";
+include "familynavbar_v4.php";
 
 $album_id_temp = (isset($_GET["album_id"]) ? $_GET["album_id"] : "");
 if ((ctype_digit($album_id_temp)) && (strlen($album_id_temp) < 10)) {
