@@ -40,11 +40,7 @@ return $output;
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta charset="utf-8" />
 		<!-- Bootstrap core CSS -->
-		<link href="<?php echo BOOTSTRAP_PATH; ?>dist/css/bootstrap.min.css" rel="stylesheet">
-		<link href="<?php echo BOOTSTRAP_PATH; ?>dist/css/bootstrap-theme.min.css" rel="stylesheet">
-		<link
-		href="//fonts.googleapis.com/css?family=Source+Sans+Pro|Germania+One"
-		rel="stylesheet" type="text/css">
+		<?PHP require 'include_fonts_css.php'; ?>
 		
 <style type="text/css">
 .container {
@@ -93,7 +89,7 @@ include 'navheader.php';
 			$family_member_id =  $_POST['family_member_id'];
 			
 			if(!isset($attachment_id) || empty($attachment_id)) {$attachment_id = null; }
-			if(!isset($feature_on_detail_page) || empty($feature_on_detail_page)) {$feature_on_detail_page = null; }
+			if(!isset($feature_on_detail_page) || empty($feature_on_detail_page)) {$feature_on_detail_page = 0; }
 			if(!isset($family_member_id) || empty($family_member_id)) {$family_member_id = null; }
 			
 
@@ -115,7 +111,7 @@ include 'navheader.php';
 			$eventprep->execute();
 
 			if ($eventprep) {
-				alert("Success!");
+				echo("\n\n\nSuccess!");
 			} else {
 					print_r($eventprep->errorInfo());
 				}
