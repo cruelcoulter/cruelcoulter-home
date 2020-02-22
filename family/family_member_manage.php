@@ -21,16 +21,11 @@ files.
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 <meta charset="utf-8" />
 <!-- Bootstrap core CSS -->
-<link
-	href="<?php echo BOOTSTRAP_PATH; ?>dist/css/bootstrap.css"
-	rel="stylesheet">
-<link
-	href='http://fonts.googleapis.com/css?family=Source+Sans+Pro|Germania+One'
-	rel='stylesheet' type='text/css'>
-<link rel="stylesheet" type="text/css" href="family.css">
+<?PHP require 'include_fonts_css.php'; ?>
+
 <title>Manage family member</title>
 
 <?php 
@@ -93,10 +88,9 @@ if (ENVIRON == "PROD") {
 </head>
 
 <body>
+<?php include 'navheader.php'; ?>
 <div class="container">
 <?php
-        
-        include 'navheader.php';
 
 $link = mysqli_connect(DATABASE_HOST, DATABASE_USERNAME, DATABASE_PASSWORD)
 or die("<p>Error connecting: " . mysqli_error($link) . "</p>");
@@ -566,7 +560,7 @@ mysqli_close($link);
 
 ?>
     <h3>Format for dates is YYYY-MM-DD</h3>
-        <form action="family_member_manage.php" method="post">
+        <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
 
             <label for="first_name">First Name</label>
             <div class="fieldinput">
@@ -863,6 +857,8 @@ checklistmatch($row['family_member_id'], "family_member_id", $row['full_name'], 
     </div>
   </div>
     <script src="<?php echo BOOTSTRAP_PATH; ?>assets/js/modal.js"></script>
--->  
+-->
+<?php include 'include_js.php'; ?>
+
     </body>
 </html>

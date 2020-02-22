@@ -1,10 +1,7 @@
 <?php
 session_start();
-
 require 'functions.php';
-
 require '../../db_config.php';
-
 require "../../pdo.php";
 /*
 07/27/12 - initial version
@@ -26,22 +23,17 @@ require "../../pdo.php";
     <meta charset="utf-8" />
     <!-- Bootstrap core CSS -->
     <?PHP require 'include_fonts_css.php'; ?>
-	<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro|Germania+One' rel='stylesheet' type='text/css'>
-	
-	<link rel="stylesheet" type="text/css" href="navbar-fixed-top.css">
 <title>Family history - Events</title>
 <?php 
 if (ENVIRON == "PROD") {
 	include 'google_script.php';
 }
 ?>
-
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="<?php echo BOOTSTRAP_PATH; ?>assets/js/html5shiv.js"></script>
       <script src="<?php echo BOOTSTRAP_PATH; ?>assets/js/respond.min.js"></script>
     <![endif]-->
-
     <!-- Fav and touch icons -->
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?php echo BOOTSTRAP_PATH; ?>assets/ico/apple-touch-icon-144-precomposed.png" >
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo BOOTSTRAP_PATH; ?>assets/ico/apple-touch-icon-114-precomposed.png">
@@ -49,25 +41,16 @@ if (ENVIRON == "PROD") {
 <link rel="apple-touch-icon-precomposed" href="<?php echo BOOTSTRAP_PATH; ?>assets/ico/apple-touch-icon-57-precomposed.png">
 <link rel="shortcut icon" href="../includes/favicon.png">
 </head>
-
 <body>
  <?php
 include "familynavbar_v4.php";
-
 $family_id_query = "select family_id, family_name from family order by family_name";
-
 $fistatement = $link->prepare($family_id_query);
-
 $fistatement->execute();
-
 $family_id_filter = $fistatement->fetchAll();
-
 $event_type_query = "select * from event_type order by event_type_name";
-
 $etstatement = $link->prepare($event_type_query);
-
 $etstatement->execute();
-
 $event_type_id_filter = $etstatement->fetchAll();
 /*
 this query works (maybe):
@@ -77,11 +60,9 @@ event_name,
 coalesce (e.family_id, (select fm.family_id from family_member fm where fm.family_member_id = e.family_member_id)) as family_id
  from mydb.event e;
 
-
 this also works (maybe)
 select event_id, coalesce(event_year, year(event_date), '?') as event_year, event_name from event WHERE 1=1 AND (family_id = 1 OR family_member_id IN (select family_member_id from family_member WHERE family_id = 1))
 */
-
 	if (isset($_POST['family_id_filter']) && (!empty($_POST['family_id_filter']))) {
 		//doesn't work. $pre_fifl = filter_var($_POST['family_id_filter'],FILTER_SANITIZE_MAGIC_QUOTES);
 		$family_id_filter_list = implode(', ', $_POST['family_id_filter']);
@@ -95,7 +76,6 @@ select event_id, coalesce(event_year, year(event_date), '?') as event_year, even
 	else {
 		$event_type_filter = NULL;
 	}
-
 if (isset($_SESSION['IsLoggedIn']) AND $_SESSION['IsLoggedIn'] == true)
   {
   $eventquery = "select event_id, coalesce(event_year, year(event_date), '?') as event_year, event_name from event WHERE 1=1 ";
@@ -121,15 +101,11 @@ else
    $eventquery .= " order by event_year";
   }
 $statement = $link->prepare($eventquery);
-
 $statement->execute();
-
 $events = $statement->fetchAll();
 ?> 
-
 <div class="container">
 <div class="row">
-
 <div class="col-md-4">
     <form method="post" class="form-inline">
     <div class="form-group">
@@ -164,23 +140,19 @@ $events = $statement->fetchAll();
     <button type="submit" class="btn btn-default">Apply filter</button>
     </form>
 </div><!-- /col-md-4 -->
-
 <div class="col-md-8">
 <ul>
-
 <?php /*var_dump($_POST['family_id_filter'])."<br>";*/ ?>
-
 <?php foreach ($events as $event) : ?>
-
 <li><?php echo $event['event_year'] . " <a href=\"event.php?event_id=" . $event['event_id'] . "\">" . $event['event_name'] . "</a>"; ?></li>
-
 <?php endforeach;?>
 </ul>
 </div><!-- /col-md-8 -->
-
         </div><!-- /row -->
         </div><!--/container-->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="<?php echo BOOTSTRAP_PATH; ?>dist/js/bootstrap.min.js"></script>
+<?php 
+include 'include_js.php';
+include 'footer_family.php';
+ ?>
 </body>
 </html>

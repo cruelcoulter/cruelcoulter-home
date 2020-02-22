@@ -11,7 +11,6 @@ require "../../pdo.php";
     <meta charset="utf-8" />
     <!-- Bootstrap core CSS -->
     <?PHP require 'include_fonts_css.php'; ?>
-	<link rel="stylesheet" type="text/css" href="navbar-fixed-top.css">
 <title>Family history - Events</title>
 <?php 
 if (ENVIRON == "PROD") {
@@ -57,5 +56,6 @@ $events = $statement->fetchAll();
         </div><!--/container-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="<?php echo BOOTSTRAP_PATH; ?>dist/js/bootstrap.min.js"></script>
+<?php include 'footer_family.php'; ?>
 </body>
 </html>

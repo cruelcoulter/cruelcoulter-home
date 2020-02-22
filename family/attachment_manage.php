@@ -78,10 +78,9 @@ if (ENVIRON == "PROD") {
 		</head>
 
 	<body>
+	<?php include 'navheader.php'; ?>
 		<div class="container">
 <?php
-
-include 'navheader.php';
 
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			$attachment_id =  $_POST['attachment_id'];
@@ -142,7 +141,7 @@ include 'navheader.php';
 		$attachment_result = $attachment_execute->fetchAll();
 		
 		?>
-			<form action="attachment_manage.php" method="post">
+			<form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
 
 				<div class="form-group">
 					<label for="family_member_id">Select family member</label>
@@ -179,7 +178,7 @@ include 'navheader.php';
 		</div>
 		<!--<script src="https://code.jquery.com/jquery-2.2.4.min.js">-->
 		<!--https://www.codexworld.com/dynamic-dependent-select-box-using-jquery-ajax-php/-->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<?php include 'include_js.php'; ?>
 		<script src="attach_ajax.js"></script>
 	</body>
 </html>

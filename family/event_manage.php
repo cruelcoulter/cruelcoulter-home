@@ -78,32 +78,21 @@ if (ENVIRON == "PROD") {
 		</head>
 
 	<body>
+	<?php  include 'navheader.php';?> 
 		<div class="container">
 <?php
 
-include 'navheader.php';
-
 /*$attachment_id = (isset($_POST['attachment_id']) ? $_POST['attachment_id'] : "");
-
 $event_date = (isset($_POST['event_date']) ? $_POST['event_date'] : "");
-
 $event_detail = (isset($_POST['event_detail']) ? $_POST['event_detail'] : "");
-		
 $event_name = (isset($_POST['event_name']) ? $_POST['event_name'] : "");
-
 $event_type_id = (isset($_POST['event_type_id']) ? $_POST['event_type_id'] : "");
-
 $event_year = (isset($_POST['event_year']) ? $_POST['event_year'] : "");
-
 $family_id = (isset($_POST['family_id']) ? $_POST['family_id'] : "");
-
 $family_member_id = (isset($_POST['family_member_id']) ? $_POST['family_member_id'] : "");
-
 $family_member_id_other = (isset($_POST['family_member_id_other']) ? $_POST['family_member_id_other'] : "");
-
 $access_level = (isset($_POST['access_level']) ? $_POST['access_level'] : "");
 */
-
 
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			$attachment_id =  $_POST['attachment_id'];
@@ -234,7 +223,7 @@ echo $attachment_id . ", " .$event_date . ", " . $event_detail . ", " . $event_n
 		$attachment_result = $attachment_execute->fetchAll();
 		
 		?>
-			<form action="event_manage.php" method="post">
+			<form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
 				<div class="form-group">
 					<label for="event_type_id">Select Event (required)</label>
 					<select name="event_type_id" class="form-control" id="event_type_id">
@@ -323,5 +312,6 @@ echo $attachment_id . ", " .$event_date . ", " . $event_detail . ", " . $event_n
 			</form>
 
 		</div>
+		<?php include 'include_js.php'; ?>
 	</body>
 </html>

@@ -14,9 +14,6 @@ require "../../pdo.php";
     <meta charset="utf-8" />
     <!-- Bootstrap core CSS -->
     <?PHP require 'include_fonts_css.php'; ?>
-	<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro|Germania+One' rel='stylesheet' type='text/css'>
-	
-	<link rel="stylesheet" type="text/css" href="navbar-fixed-top.css">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css" />
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
     <script type="text/javascript" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
@@ -51,7 +48,6 @@ include "familynavbar_v4.php";
 //TODO: distinguish between public and private
 ?>
 <div class="container">
-<div class="row">
 <div class="col-md-12">
 <table id="attachment_find" class="display">
 <thead>
@@ -61,7 +57,14 @@ include "familynavbar_v4.php";
 </thead>
 </table>
 </div><!-- /col-md-12 -->
-        </div><!-- /row -->
         </div><!--/container-->
+        <!--for social media icons-->
+<script src="https://use.fontawesome.com/releases/v5.0.8/js/brands.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js"></script>
+
+<?php 
+// don't include 'include_js.php' it breaks the page
+include 'footer_family.php'; ?>
 </body>
 </html>

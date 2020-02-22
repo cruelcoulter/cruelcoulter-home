@@ -3,9 +3,6 @@ session_start();
 require 'functions.php';
 require '../../db_config.php';
 require "../../pdo.php";
-/*
-04/1<?PHP require 'include_fonts_css.php'; ?>
- */
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,9 +10,7 @@ require "../../pdo.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8" />
     <!-- Bootstrap core CSS -->
-    <link href="<?php echo BOOTSTRAP_PATH; ?>dist/css/bootstrap.css" rel="stylesheet">
-    <link href="<?php echo BOOTSTRAP_PATH; ?>dist/css/bootstrap-theme.css" rel="stylesheet">
-	
+    <?PHP require 'include_fonts_css.php'; ?>	
 	
 <title>Family history - Tag</title>
 <?php
@@ -66,7 +61,6 @@ $attstatement->bindValue(':tag_id', $tag_id);
 $attstatement->execute();
 ?>
 <div class="container" style="padding-top: 50px;">
-<div class="row">
 <h1><?php echo $tagtext ?></h1>
 <?php
 if ($eventresult->rowCount() > 0) {
@@ -103,7 +97,10 @@ echo "</ul>";
 ?>
 <?php /*echo "<img class=\"img-responsive\" src=\"{$tag['attachment_location']}\" alt=\"{$tag['alt_text']}\">\n";*/ ?>
 
-        </div><!-- /row -->
         </div><!--/container-->
+<?php
+include 'include_js.php';
+include 'footer_family.php'; 
+?>
 </body>
 </html>

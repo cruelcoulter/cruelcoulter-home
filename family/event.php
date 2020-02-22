@@ -70,12 +70,14 @@ $statement->execute();
 $event = $statement->fetch();
 ?>
 <div class="container" style="padding-top: 50px;">
-<div class="row">
 
 <p><?php echo $event['event_year'] . " " . $event['event_name'] . " " . $event['event_detail']; ?></p>
 <?php echo "<img class=\"img-responsive\" src=\"{$event['attachment_location']}\" alt=\"{$event['alt_text']}\">\n"; ?>
 
-        </div><!-- /row -->
         </div><!--/container-->
+        <?php 
+        include 'include_js.php';
+        include 'footer_family.php';
+         ?>
 </body>
 </html>

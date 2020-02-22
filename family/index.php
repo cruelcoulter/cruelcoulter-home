@@ -34,11 +34,10 @@ TODO: change to pdo
     <!-- Bootstrap core CSS -->
     <?PHP require 'include_fonts_css.php'; ?>
 		
-	<link rel="stylesheet" type="text/css" href="navbar-fixed-top.css">
-  <!--for social media icons-->
+	<!--<link rel="stylesheet" type="text/css" href="navbar-fixed-top.css">
   <script src="https://use.fontawesome.com/releases/v5.0.8/js/brands.js"></script>
   <script src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js"></script>
-  <script src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js"></script>-->
 <title>Family history - Coulter, Kennedy, Pettibone, Raible</title>
 
 <?php
@@ -239,8 +238,12 @@ mysqli_close($link);
         ?>
         </div>
         </div><!--/container-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="<?php echo BOOTSTRAP_PATH; ?>dist/js/bootstrap.min.js"></script>
-<?php include '../includes/footer.php'; ?>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="<?php echo BOOTSTRAP_PATH; ?>dist/js/bootstrap.min.js"></script>-->
+<?php 
+//include '../includes/footer.php'; 
+include 'include_js.php';
+include 'footer_family.php';
+?>
 </body>
 </html>

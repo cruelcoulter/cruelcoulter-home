@@ -14,9 +14,6 @@ require "../../pdo.php";
     <meta charset="utf-8" />
     <!-- Bootstrap core CSS -->
     <?PHP require 'include_fonts_css.php'; ?>
-	<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro|Germania+One' rel='stylesheet' type='text/css'>
-	
-	<link rel="stylesheet" type="text/css" href="navbar-fixed-top.css">
 <title>Family history - Tags</title>
 <?php
 if (ENVIRON == "PROD") {
@@ -44,16 +41,16 @@ $statement->execute();
 $tags = $statement->fetchAll();
 ?>
 <div class="container">
-<div class="row">
 <ul>
 <?php foreach ($tags as $tag) : ?>
 <li><?php echo " <a href=\"tag.php?tag_id=" . $tag['tag_id'] . "\">" . $tag['tag_text'] . "</a>"; ?></li>
 <?php endforeach;?>
 </ul>
 
-        </div><!-- /row -->
         </div><!--/container-->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="<?php echo BOOTSTRAP_PATH; ?>dist/js/bootstrap.min.js"></script>
+<?php
+include 'include_js.php';
+include 'footer_family.php'; 
+?>
 </body>
 </html>

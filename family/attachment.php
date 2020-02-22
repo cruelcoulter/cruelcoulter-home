@@ -28,7 +28,6 @@ require '../../pdo.php';
     <?PHP require 'include_fonts_css.php'; ?>
 	
 	
-	<link rel="stylesheet" type="text/css" href="navbar-fixed-top.css">
 <title>Family History - Attachments</title>
 <?php
 if (ENVIRON == "PROD") {
@@ -116,7 +115,8 @@ echo $tagstring;
 </div><!-- /familytable -->
 </div> <!--/textarea-->
 </div><!-- /.container -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="<?php echo BOOTSTRAP_PATH; ?>dist/js/bootstrap.min.js"></script>
+<?php 
+include 'include_js.php';
+include 'footer_family.php'; ?>
 </body>
 </html>

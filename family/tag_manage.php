@@ -96,15 +96,14 @@ $tags = $tagexecute->fetchAll();
 </head>
 
 <body>
-<div class="container" style="padding-top:55px;">
-
 <?php
         include 'navheader.php';
 ?>
-<div class="row">
-<form method="post">
+<div class="container" style="padding-top:55px;">
+
+<form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
 <label for="tagnew">Add a new tag...</label>
-<input type="text" name="tagnew" id="tagnew" />
+<input type="text" name="tagnew" id="tagnew" class="form-control" />
 <label for="tag_id">... OR select an existing tag</label>
 <select id="tag_id" name="tag_id">
 <option value=""></option>
@@ -114,28 +113,22 @@ echo  "<option value=\"{$tagrow['tag_id']}\">{$tagrow['tag_text']}</option>";
 endforeach;
 ?>
 </select>
-</div>
 
-<div class="row">
+
 <label for="db-one">Pick the type of item you are applying the tag to</label>
-<select id="db-one" name="ref_type">
+<select id="db-one" name="ref_type" class="form-control">
 <option selected value="--select--">--select--</option>
 <option value="attachment">attachment</option>
 <option value="event">event</option>
 <option value="link">link</option>
 </select>
-</div>
 
-<div class="row">
 <label for="db-two">Pick the item</label>
-<select id="db-two" name="ref_id">
+<select id="db-two" name="ref_id" class="form-control">
 <option>Please choose</option>
 </select>
-</div>
 
-<div class="row">
 <input type="submit" value="submit">
-</div>
 
 </form>
 </div>

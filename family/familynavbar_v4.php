@@ -39,7 +39,7 @@
               	echo "<li><a class=\"nav-link\" href=\"" . FAMILY_URL_ROOT . "login.php\">Log In</a></li>";
               }
               ?>
-              <li><?php if (ENVIRON == "DEV") {echo basename($_SERVER['PHP_SELF']);} ?></li>
+              <!---<li><?php if (ENVIRON == "DEV") {echo basename($_SERVER['PHP_SELF']);} ?></li>--->
               
               </ul>
           </div><!--/.navbar-collapse -->

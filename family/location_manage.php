@@ -201,5 +201,6 @@ else {
 			<button type="submit" class="btn btn-default">Submit</button>
 		</form>
 	</div>
+	<?php include 'include_js.php'; ?>
 </body>
 </html>
