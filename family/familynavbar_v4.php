@@ -1,6 +1,7 @@
 <?php
 /*
 02/12/18 - copy of familynavbar created to handle bootstrap4
+02/23/20 - Add link to links
  */
  $currpage = basename($_SERVER['PHP_SELF']);
 ?>
@@ -16,6 +17,7 @@
               <li<?php echo checkpage($currpage, "events.php"); ?>><a class="nav-link" href="<?php echo FAMILY_URL_ROOT; ?>events.php">Events</a></li>
               <li<?php echo checkpage($currpage, "tags.php"); ?>><a class="nav-link" href="<?php echo FAMILY_URL_ROOT; ?>tags.php">Tags</a></li>
               <li<?php echo checkpage($currpage, "attachment_find.php"); ?>><a class="nav-link" href="<?php echo FAMILY_URL_ROOT; ?>attachment_find.php">Documents</a></li>
+              <li<?php echo checkpage($currpage, "links.php"); ?>><a class="nav-link" href="<?php echo FAMILY_URL_ROOT; ?>links.php">Links</a></li>
               <li<?php echo checkpage($currpage, "album_list.php"); ?>><a class="nav-link" href="<?php echo FAMILY_URL_ROOT; ?>album_list.php">Albums</a></li>
  <?php
  if (isset($_GET["family_member_id"])) {
