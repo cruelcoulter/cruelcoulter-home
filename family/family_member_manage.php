@@ -1,13 +1,10 @@
 <?php
 session_start();
-
 require 'functions.php';
-
 if ( ! AmILoggedIn()) {
 	$thispage = substr($_SERVER['PHP_SELF'], 1);
 	header("Location:login.php?backto=" . $thispage);
 }
-
 require '../../db_config.php';
 /* 
 10/06/13 - added navheader include
@@ -16,6 +13,7 @@ require '../../db_config.php';
 11/02/13 - added status column
 files.
 10/04/14 - Renamed status -> access_level. capitalized public and private
+Feb 2020 - Converted to Bootstrap. Added tinymce. Added family_member_slug
  */
 ?>
 <!DOCTYPE html>
@@ -23,23 +21,28 @@ files.
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 <meta charset="utf-8" />
+        <!-- added tinymce link 9/29/15 -->
+        <script type="text/javascript" src="tinymce/tinymce.min.js"></script>
+        <script type="text/javascript">
+		tinymce.init({
+			plugins: ["link"],
+			selector: "#family_member_notes"
+		});
+		</script>
+
 <!-- Bootstrap core CSS -->
 <?PHP require 'include_fonts_css.php'; ?>
-
 <title>Manage family member</title>
-
 <?php 
 if (ENVIRON == "PROD") {
 	include 'google_script.php';
 }
 ?>
-
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
       <script src="<?php echo BOOTSTRAP_PATH; ?>assets/js/html5shiv.js"></script>
       <script src="<?php echo BOOTSTRAP_PATH; ?>assets/js/respond.min.js"></script>
     <![endif]-->
-
 <!-- Fav and touch icons -->
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
 	href="<?php echo BOOTSTRAP_PATH; ?>assets/ico/apple-touch-icon-144-precomposed.png">
@@ -54,7 +57,6 @@ if (ENVIRON == "PROD") {
 <!-- <script type="text/javascript" src="//code.jquery.com/jquery-latest.min.js"></script> -->
 <!--       <script type="text/javascript">
                $(document).ready(function(){
-
                         function showState(){
                             $.ajax({
                                 type:"post",
@@ -65,9 +67,7 @@ if (ENVIRON == "PROD") {
                                 }
                             });
                         }
-
                         showState();
-
                         $("#statesubmit").click(function(){
                             
                           var name=$("#state").val();
@@ -86,18 +86,14 @@ if (ENVIRON == "PROD") {
                });
        </script> -->
 </head>
-
 <body>
 <?php include 'navheader.php'; ?>
 <div class="container">
 <?php
-
 $link = mysqli_connect(DATABASE_HOST, DATABASE_USERNAME, DATABASE_PASSWORD)
 or die("<p>Error connecting: " . mysqli_error($link) . "</p>");
-
 mysqli_select_db($link, DATABASE_NAME)
 or die("<p>Error selecting: " . mysqli_error($link) . "</p>");
-
 /* try {
 	$pdolink = new PDO('mysql:host=localhost;dbname=cruelcou_family', DATABASE_USERNAME,DATABASE_PASSWORD);
 }
@@ -106,50 +102,35 @@ catch (PDOException $e)
 	echo $e->getMessage();
 }
  */
-
 $query_text = "select * from family order by family_name";
 $result = mysqli_query($link, $query_text);
-
 $qry_city_twp = "select * from city_twp order by city_name";
-
 $res_city_twp = mysqli_query($link, $qry_city_twp);
-
 $qry_state = "select * from state order by state";
-
 $res_state = mysqli_query($link, $qry_state);
-
 $qry_county = "select * from county order by county";
-
 $res_county = mysqli_query($link, $qry_county);
-
 $qry_country = "select * from country order by country";
-
 $res_country = mysqli_query($link, $qry_country);
-
-$qry_mother = "SELECT family_member_id, concat_ws(' ', first_name, family_name) as full_name FROM family_member, family WHERE family.family_id = family_member.family_id";
-
+//$qry_mother = "SELECT family_member_id, concat_ws(' ', first_name, family_name) as full_name FROM family_member, family WHERE family.family_id = family_member.family_id";
+$qry_mother = "SELECT family_member_id, family_member_slug as full_name FROM family_member, family WHERE family.family_id = family_member.family_id and gender='female' order by last_name, first_name";
 $res_mother = mysqli_query($link, $qry_mother);
-
-$qry_father = "SELECT family_member_id, concat_ws(' ', first_name, family_name) as full_name FROM family_member, family WHERE family.family_id = family_member.family_id";
-
+//$qry_father = "SELECT family_member_id, concat_ws(' ', first_name, family_name) as full_name FROM family_member, family WHERE family.family_id = family_member.family_id";
+$qry_father = "SELECT family_member_id, family_member_slug as full_name FROM family_member, family WHERE family.family_id = family_member.family_id and gender='male' order by last_name, first_name";
 $res_father = mysqli_query($link, $qry_father);
-
 if (isset($_GET["family_member_id"])) {
 $fmquery_text = "select * from family_member where family_member_id = " .
 		htmlspecialchars($_GET["family_member_id"]);
-
 $fmresult = mysqli_query($link, $fmquery_text);
 $fmrow = mysqli_fetch_array($fmresult);
 $to_edit = true;
 $editing=false;
 $adding=false;
 }
-
 if (isset($_POST["family_member_id"])) {
     $editing = true;
 	$to_edit = false;
     $adding = false;
-
 } elseif (($_SERVER['REQUEST_METHOD'] === 'POST') && 
 (!isset($_POST["family_member_id"])))  {
 $editing = false;
@@ -157,20 +138,16 @@ $adding = true;
 $to_edit = false;
 }
 
-
 if(!$result) {
 	die("<p>Query Error: " . mysqli_error($link) . "</p>");
 }
-
 /* 
 // test submit the stateform
 $state = $_POST['state'];
 if (strlen($state)){
-
 	$statepdo = $pdolink->prepare("insert into state (state) VALUES (:state)");
 	$statepdo->bindParam(':state', $state);
 	$statepdo->execute();
-
 	if ($statepdo) {
 		echo 'State added';
 	}
@@ -180,11 +157,9 @@ if (strlen($state)){
 	}
 }
  */
-
 /* 
  * //source: http://phpseason.wordpress.com/2013/02/15/ajax-add-retrieve-mysql-records-using-jquery-php/
 $action=$_POST["action"];
-
 if($action=="showstate") {
 	$statepdo = $pdolink->prepare('select * from state order by state');
 	$statepdo->execute();
@@ -214,7 +189,6 @@ function returnff($ff, $to_edit, $fmrow)
     if ($to_edit === true && strlen($fmrow[$ff])) 
         { echo "value=\"{$fmrow[$ff]}\""; }
 }
-
 /*
  * 
  * $idvalue: the value of the id
@@ -230,7 +204,6 @@ echo "<option value=\"{$idvalue}\" selected>{$displayvalue}</option>\n";
 echo "<option value=\"{$idvalue}\">{$displayvalue}</option>\n";
 }
 }
-
 
 if ($editing == true || $adding == true) {
 $first_name = (isset($_POST["first_name"]) ? $_POST["first_name"] : "");
@@ -255,8 +228,8 @@ $mother_member_id = (isset($_POST["mother_member_id"]) ? $_POST["mother_member_i
 $father_member_id = (isset($_POST["father_member_id"]) ? $_POST["father_member_id"] : "");
 $family_member_notes = (isset($_POST["family_member_notes"]) ? $_POST["family_member_notes"] : "");
 $access_level = (isset($_POST["access_level"]) ? $_POST["access_level"] : "");
-
 $family_member_id = (isset($_POST["family_member_id"]) ? $_POST["family_member_id"] : "");
+$family_member_slug = (isset($_POST["family_member_slug"]) ? $_POST["family_member_slug"] : "");
 }
 // 4/25/13 - added quotes around birthdate and deathdate in the insert and update queries
 if ($adding == true) {
@@ -267,191 +240,150 @@ if ($adding == true) {
     if (strlen($first_name)){
     $ins_qry_text .= "first_name";
     }
-
     if (strlen($family_id)){
     $ins_qry_text .= ", family_id";
     }
-
     if (strlen($last_name)){
     $ins_qry_text .= ", last_name";
     }
-
     if (strlen($gender)){
     $ins_qry_text .= ", gender";
     }
-
     if (strlen($married_name)){
     $ins_qry_text .= ", married_name";
     }
-
     if (strlen($married_name_id)){
     $ins_qry_text .= ", married_name_id";
     }
-
     if (strlen($birthdate_est)){
     $ins_qry_text .= ", birthdate_est";
     }
-
     if (strlen($birthdate)){
     $ins_qry_text .= ", birthdate";
     }
-	
 	if (strlen($birth_city_twp_id)){
     $ins_qry_text .= ", birth_city_twp_id";
     }
-
 	if (strlen($birth_state_id)){
     $ins_qry_text .= ", birth_state_id";
     }
-	
 	if (strlen($birth_county_id)){
     $ins_qry_text .= ", birth_county_id";
     }
-
 	if (strlen($birth_country_id)){
     $ins_qry_text .= ", birth_country_id";
     }
-	
 	if (strlen($deathdate_est)){
     $ins_qry_text .= ", deathdate_est";
     }
-	
 	if (strlen($deathdate)){
     $ins_qry_text .= ", deathdate";
     }
-	
 	if (strlen($death_city_twp_id)){
     $ins_qry_text .= ", death_city_twp_id";
     }
-	
 	if (strlen($death_state_id)){
     $ins_qry_text .= ", death_state_id";
     }
-	
 	if (strlen($death_county_id)){
     $ins_qry_text .= ", death_county_id";
     }
-	
 	if (strlen($death_country_id)){
     $ins_qry_text .= ", death_country_id";
     }
-	
 	if (strlen($mother_member_id)){
     $ins_qry_text .= ", mother_member_id";
     }
-	
 	if (strlen($father_member_id)){
     $ins_qry_text .= ", father_member_id";
     }
     if (strlen($family_member_notes)){
         $ins_qry_text .= ", family_member_notes";
     }
+    if (strlen($family_member_slug)){
+        $ins_qry_text .= ", family_member_slug";
+    }
     $ins_qry_text .= ", access_level";
-
     
     $ins_qry_text .= ") VALUES (";
-
     
     if (strlen($first_name)){
         $ins_qry_text .= "'" . $first_name . "'";
     }
-
     if (strlen($family_id)){
         $ins_qry_text .= ", " . $family_id;
     }
-
     if (strlen($last_name)){
         $ins_qry_text .= ", '" . $last_name . "'";
     }
-
     if (strlen($gender)){
         $ins_qry_text .= ", '" . $gender . "'";
     }
-
     if (strlen($married_name)){
         $ins_qry_text .= ", '" . $married_name . "'";
     }
-
     if (strlen($married_name_id)){
         $ins_qry_text .= ", " . $married_name_id;
     }
-
     if (strlen($birthdate_est)){
         $ins_qry_text .= ", '" . $birthdate_est . "'";
     }
-
     if (strlen($birthdate)){
         $ins_qry_text .= ", '" . $birthdate . "'";
     }
-
     if (strlen($birth_city_twp_id)){
         $ins_qry_text .= ", " . $birth_city_twp_id;
     }
-
     if (strlen($birth_state_id)){
         $ins_qry_text .= ", " . $birth_state_id;
     }
-
     if (strlen($birth_county_id)){
         $ins_qry_text .= ", " . $birth_county_id;
     }
-
     if (strlen($birth_country_id)){
         $ins_qry_text .= ", " . $birth_country_id;
     }
-
     if (strlen($deathdate_est)){
         $ins_qry_text .= ", '" . $deathdate_est . "'";
     }
-
     if (strlen($deathdate)){
         $ins_qry_text .= ", '" . $deathdate . "'";
     }
-
     if (strlen($death_city_twp_id)){
         $ins_qry_text .= ", " . $death_city_twp_id;
     }
-
     if (strlen($death_state_id)){
         $ins_qry_text .= ", " . $death_state_id;
     }
-
     if (strlen($death_county_id)){
         $ins_qry_text .= ", " . $death_county_id;
     }
-
     if (strlen($death_country_id)){
         $ins_qry_text .= ", " . $death_country_id;
     }
-
     if (strlen($mother_member_id)){
         $ins_qry_text .= ", " . $mother_member_id;
     }
-
     if (strlen($father_member_id)){
         $ins_qry_text .= ", " . $father_member_id;
     }
     if (strlen($family_member_notes)){
         $ins_qry_text .= ", '" . $family_member_notes . "'";
     }
+    if (strlen($family_member_slug)){
+        $ins_qry_text .= ", '" . $family_member_slug . "'";
+    }
     $ins_qry_text .= ", '" . $access_level . "'";
-
 $ins_qry_text .= ")";
-
 echo $ins_qry_text;
-
 $res_qry_text = mysqli_query($link, $ins_qry_text);
-
 mysqli_close($link);
 }
-
 ////////
 //EDITS
 ///////
-
 if ($editing == true) {
 	$edit_qry_text = "update family_member set ";
-
 	if (strlen($first_name)){
 		$edit_qry_text .= " first_name='" . $first_name . "'";
 	} else {
@@ -537,290 +469,20 @@ if ($editing == true) {
 	if (strlen($family_member_notes)){
 		$edit_qry_text .= ", family_member_notes='" . $family_member_notes . "'";
 	} 
+	if (strlen($family_member_slug)){
+		$edit_qry_text .= ", family_member_slug='" . $family_member_slug . "'";
+	} 
 	$edit_qry_text .= ", access_level='" . $access_level . "'";
 	
     $edit_qry_text .= " where family_member_id = " . $_POST["family_member_id"];
     
     echo $edit_qry_text;
-
     $res_qry_text = mysqli_query($link, $edit_qry_text);
-
 mysqli_close($link);
 }
-
-
-//
-//end php
-//begin form
-
-//don't display form if posting
-//if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-//	exit();
-//}
-
+//call the form. Renamed to html to make it easier to edit
+include 'family_member_manage_form.html';
 ?>
-    <h3>Format for dates is YYYY-MM-DD</h3>
-        <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
-
-            <label for="first_name">First Name</label>
-            <div class="fieldinput">
-            <input name="first_name" id="first_name" type="text" maxlength="20"
-                   <?php returnff("first_name", $to_edit, $fmrow) ?> />
-            </div>
-
-            <label for="family_id">Last Name</label>
-            <div class="fieldinput">
-                <select name="family_id" id="family_id">
-                    <option value=""></option>
-                    <?php 
-                    while ($row = mysqli_fetch_array($result)) {
-/*                echo "<option value=\"{$row['family_id']}\">
-                    {$row['family_name']}</option>\n";
- */
-checklistmatch($row["family_id"], "family_id", $row["family_name"], 
-"family_name", $fmrow["family_id"]);
-                    }
-?>
-                </select>
-            </div>
-
-            <label for="gender">Gender</label>
-            <div class="fieldinput">
-                <select name="gender" id="gender">
-                <option value=""></option>
-                <?php
-                if ($fmrow["gender"] == "male") { 
-                echo "<option value=\"male\" selected>male</option>";
-                } else {
-				echo "<option value=\"male\">male</option>";
-				}
-				
-				if ($fmrow["gender"] == "female") {
-					echo "<option value=\"female\" selected>female</option>";
-				} else {
-					echo "<option value=\"female\">female</option>";
-				}
-                ?>
-                </select>
-            </div>
-
-            <label for="married_name_id">Married Name</label>
-            <div class="fieldinput">
-                <select name="married_name_id" id="married_name_id">
-                    <option value=""></option>
-                    <?php
-		mysqli_data_seek($result,0); //have to restart at the beginning
-                    while ($row = mysqli_fetch_array($result)) {
-//                echo "<option value=\"{$row['family_id']}\">
-//                   {$row['family_name']}</option>\n";
-checklistmatch($row["family_id"], "family_id", $row["family_name"], 
-"family_name", $fmrow["married_name_id"]);
-                    }
-                    ?>
-                </select>
-            </div>
-
-            <label for="birthdate_est">Est Birth Date</label>
-            <div class="fieldinput">
-            <input name="birthdate_est" id="birthdate_est" type="text" maxlength="25" 
-                   <?php returnff("birthdate_est", $to_edit, $fmrow) ?>/>
-            </div>
-
-            <label for="birthdate">Birth Date</label>
-            <div class="fieldinput">
-            <input name="birthdate" id="birthdate" type="text" maxlength="25" 
-                 <?php returnff("birthdate", $to_edit, $fmrow) ?>  />
-            </div>
-
-            <label for="birth_city_twp_id">Birthplace (City/Township)</label>
-            <div class="fieldinput">
-                <select name="birth_city_twp_id" id="birth_city_twp_id">
-                    <option value=""></option>
-                    <?php
-		//mysqli_data_seek($result,0); //have to restart at the beginning
-                    while ($row = mysqli_fetch_array($res_city_twp)) {
-//                echo "<option value=\"{$row['city_twp_id']}\">
-//                    {$row['city_name']} {$row['city_twp']}</option>\n";
-checklistmatch($row["city_twp_id"], "city_twp_id", $row["city_name"], 
-"city_name", $fmrow["birth_city_twp_id"]);
-                    }
-                    ?>
-                </select>
-            </div>
-
-            <label for="birth_state_id">Birthplace (State)</label>
-            <div class="fieldinput">
-                <select name="birth_state_id" id="birth_state_id">
-                    <option value=""></option>
-                    <?php
-		//mysqli_data_seek($result,0); //have to restart at the beginning
-                    while ($row = mysqli_fetch_array($res_state)) {
-                //echo "<option value=\"{$row['state_id']}\">{$row['state']}</option>\n";
-checklistmatch($row["state_id"], "state_id", $row["state"], "state", $fmrow["birth_state_id"]);
-}
-                    ?>
-                </select>
-                
-                
-               <!--  <p><a href="#stateform" data-toggle="modal" data-target="#stateform">Add state</a></p> -->
-                
-                
-                
-            </div>
-
-            <label for="birth_county_id">Birthplace (County)</label>
-            <div class="fieldinput">
-                <select name="birth_county_id" id="birth_county_id">
-                    <option value=""></option>
-                    <?php
-		//mysqli_data_seek($result,0); //have to restart at the beginning
-                    while ($row = mysqli_fetch_array($res_county)) {
-//                echo "<option value=\"{$row['county_id']}\">{$row['county']}</option>\n";
-checklistmatch($row["county_id"], "county_id", $row["county"], "county", $fmrow["birth_county_id"]);
-                    }
-                    ?>
-                </select>
-            </div>
-
-            <label for="birth_country_id">Birthplace (Country)</label>
-            <div class="fieldinput">
-                <select name="birth_country_id" id="birth_country_id">
-                    <option value=""></option>
-                    <?php
-		//mysqli_data_seek($result,0); //have to restart at the beginning
-                    while ($row = mysqli_fetch_array($res_country)) {
-//                echo "<option value=\"{$row['country_id']}\">{$row['country']}</option>\n";
-checklistmatch($row["country_id"], "country_id", $row["country"], "country", $fmrow["birth_country_id"]);
-                    }
-                    ?>
-                </select>
-            </div>
-
-
-            <label for="deathdate_est">Est Death Date</label>
-            <div class="fieldinput">
-            <input name="deathdate_est" id="deathdate_est" type="text" maxlength="25" 
-                   <?php returnff("deathdate_est", $to_edit, $fmrow) ?>/>
-            </div>
-
-            <label for="deathdate">Death Date</label>
-            <div class="fieldinput">
-            <input name="deathdate" id="deathdate" type="text" maxlength="25" 
-                 <?php returnff("deathdate", $to_edit, $fmrow) ?>  />
-            </div>
-
-            <label for="death_city_twp_id">Deathplace (City/Township)</label>
-            <div class="fieldinput">
-                <select name="death_city_twp_id" id="death_city_twp_id">
-                    <option value=""></option>
-                    <?php
-		mysqli_data_seek($res_city_twp,0); //have to restart at the beginning
-                    while ($row = mysqli_fetch_array($res_city_twp)) {
-//                echo "<option value=\"{$row['city_twp_id']}\">
-//                    {$row['city_name']} {$row['city_twp']}</option>\n";
-checklistmatch($row["city_twp_id"], "city_twp_id", $row["city_name"], 
-"city_name", $fmrow["death_city_twp_id"]);
-                    }
-                    ?>
-                </select>
-            </div>
-
-            <label for="death_state_id">Deathplace (State)</label>
-            <div class="fieldinput">
-                <select name="death_state_id" id="death_state_id">
-                    <option value=""></option>
-                    <?php
-		mysqli_data_seek($res_state,0); //have to restart at the beginning
-                    while ($row = mysqli_fetch_array($res_state)) {
-//                echo "<option value=\"{$row['state_id']}\">{$row['state']}</option>\n";
-checklistmatch($row["state_id"], "state_id", $row["state"],
-"state", $fmrow["death_state_id"]);
-                    }
-                    ?>
-                </select>
-            </div>
-
-            <label for="death_county_id">Deathplace (County)</label>
-            <div class="fieldinput">
-                <select name="death_county_id" id="death_county_id">
-                    <option value=""></option>
-                    <?php
-		mysqli_data_seek($res_county,0); //have to restart at the beginning
-                    while ($row = mysqli_fetch_array($res_county)) {
-//                echo "<option value=\"{$row['county_id']}\">{$row['county']}</option>\n";
-checklistmatch($row["county_id"], "county_id", $row["county"], "county", $fmrow["death_county_id"]);
-                    }
-                    ?>
-                </select>
-            </div>
-
-            <label for="death_country_id">Deathplace (Country)</label>
-            <div class="fieldinput">
-                <select name="death_country_id" id="death_country_id">
-                    <option value=""></option>
-                    <?php
-		mysqli_data_seek($res_country,0); //have to restart at the beginning
-                    while ($row = mysqli_fetch_array($res_country)) {
-//                echo "<option value=\"{$row['country_id']}\">{$row['country']}</option>\n";
-checklistmatch($row["country_id"], "country_id", $row["country"], "country", $fmrow["death_country_id"]);
-                    }
-                    ?>
-                </select>
-            </div>
-
-            <label for="mother_member_id">Mother</label>
-            <div class="fieldinput">
-                <select name="mother_member_id" id="mother_member_id">
-                    <option value=""></option>
-                    <?php
-		//mysqli_data_seek($res_country,0); //have to restart at the beginning
-                    while ($row = mysqli_fetch_array($res_mother)) {
-//                echo "<option value=\"{$row['family_member_id']}\">{$row['full_name']}</option>\n";
-checklistmatch($row['family_member_id'], "family_member_id", $row['full_name'], "full_name", $fmrow["mother_member_id"]);
-                    }
-                    ?>
-                </select>
-            </div>
-
-            <label for="father_member_id">Father</label>
-            <div class="fieldinput">
-                <select name="father_member_id" id="father_member_id">
-                    <option value=""></option>
-                    <?php
-		//mysqli_data_seek($res_country,0); //have to restart at the beginning
-                    while ($row = mysqli_fetch_array($res_father)) {
-//                echo "<option value=\"{$row['family_member_id']}\">{$row['full_name']}</option>\n";
-checklistmatch($row['family_member_id'], "family_member_id", $row['full_name'], "full_name", $fmrow["father_member_id"]);
-                    }
-                    ?>
-                </select>
-            </div>
-            
-            <label for="family_member_notes">Notes</label>
-            <div class="fieldinput">
-            <textarea name="family_member_notes" id="family_member_notes"><?php echo $fmrow["family_member_notes"]?></textarea>
-			</div>
-            
-            <label for="access_level">Access Level</label>
-            <div class="fieldinput">
-            <select name="access_level" id="access_level">
-            <option value="PUBLIC">Public</option>
-            <option value="PRIVATE">Private</option>
-            </select>
-            </div>
-            
-            <?php 
-            if ($to_edit == true) {
-            	echo "<input type=\"hidden\" name=\"family_member_id\" value=" . 
-              	$_GET["family_member_id"] . ">";
-            }
-            
-            ?>
-            
-            <input type="submit" value="submit" name="submit" class="btn btn-default"/>
-
-
-</form>
     </div><!-- /.container -->
     
     
@@ -859,6 +521,6 @@ checklistmatch($row['family_member_id'], "family_member_id", $row['full_name'], 
     <script src="<?php echo BOOTSTRAP_PATH; ?>assets/js/modal.js"></script>
 -->
 <?php include 'include_js.php'; ?>
-
+		<script src="build_slug_ajax.js"></script>
     </body>
 </html>
