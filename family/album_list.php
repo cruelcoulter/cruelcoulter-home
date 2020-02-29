@@ -54,8 +54,9 @@ $events = $statement->fetchAll();
 
         </div><!-- /row -->
         </div><!--/container-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="<?php echo BOOTSTRAP_PATH; ?>dist/js/bootstrap.min.js"></script>
-<?php include 'footer_family.php'; ?>
+<?php 
+include 'include_js.php';
+include 'footer_family.php'; 
+?>
 </body>
 </html>
