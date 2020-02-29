@@ -74,6 +74,10 @@ include "familynavbar_v4.php";
 </div><!-- /col-md-12 -->
 
         </div><!--/container-->
+<!--for social media icons. Don't include the other javascript files. They conflict with the scripts above-->
+<script src="https://use.fontawesome.com/releases/v5.0.8/js/brands.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js"></script>
         <?php //include 'include_js.php'; ?>
         <?php include 'footer_family.php'; ?>
 </body>
