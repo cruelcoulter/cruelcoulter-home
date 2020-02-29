@@ -71,7 +71,8 @@ if (ENVIRON == "PROD") {
 
 <div class="container">
 <div class="jumbotron">
-<p>This is a genealogy of my ancestors: the Coulters of Wayne County, Ohio, the Kennedys of parts unknown, the Pettibones of Girard, Pennsylvania, and the Raibles of Erie, Pennsylvania. It is a work in progress. Please check back for updates. Information on living people is not included.</p>
+<h1 class="display-4">Family history - Coulter, Kennedy, Pettibone, Raible</h1>
+<p class="lead">This is a genealogy of my ancestors: the Coulters of Wayne County, Ohio, the Kennedys of parts unknown, the Pettibones of Girard, Pennsylvania, and the Raibles of Erie, Pennsylvania. It is a work in progress. Please check back for updates. Information on living people is not included.</p>
 <p>If you would like more information of any people on this site, please contact ron at cruelcoulter dot com. Also, please follow me on Twitter: @cruelcoulter</p>
 </div>
 <div class="row">
