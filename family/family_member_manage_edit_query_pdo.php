@@ -1,0 +1,55 @@
+$data = [	
+   'first_name'=>$first_name,
+	'family_id'=>$family_id,
+	'last_name'=>$last_name,
+	'gender'=>$gender,
+	'married_name'=>$married_name,
+	'married_name_id'=>$married_name_id,
+	'birthdate_est'=>$birthdate_est,
+	'birthdate'=>$birthdate,
+	'birth_city_twp_id'=>$birth_city_twp_id,
+	'birth_state_id'=>$birth_state_id,
+	'birth_county_id'=>$birth_county_id,
+	'birth_country_id'=>$birth_country_id,
+	'deathdate_est'=>$deathdate_est,
+	'deathdate'=>$deathdate,
+	'death_city_twp_id'=>$death_city_twp_id,
+	'death_state_id'=>$death_state_id,
+	'death_county_id'=>$death_county_id,
+	'death_country_id'=>$death_country_id,
+	'mother_member_id'=>$mother_member_id,
+	'father_member_id'=>$father_member_id,
+	'family_member_notes'=>$family_member_notes,
+	'family_member_slug'=>$family_member_slug,
+	'family_member_id'=>$family_member_id,
+    'access_level'=>$access_level
+	];
+$sql = "update family_member set
+	first_name=:first_name,
+	family_id=:family_id,
+	last_name=:last_name,
+	gender=:gender,
+	married_name=:married_name,
+	married_name_id=:married_name_id,
+	birthdate_est=:birthdate_est,
+	birthdate=:birthdate,
+	birth_city_twp_id=:birth_city_twp_id,
+	birth_state_id=:birth_state_id,
+	birth_county_id=:birth_county_id,
+	birth_country_id=:birth_country_id,
+	deathdate_est=:deathdate_est,
+	deathdate=:deathdate,
+	death_city_twp_id=:death_city_twp_id,
+	death_state_id=:death_state_id,
+	death_county_id=:death_county_id,
+	death_country_id=:death_country_id,
+	mother_member_id=:mother_member_id,
+	father_member_id=:father_member_id,
+	family_member_notes=:family_member_notes,
+	family_member_slug=:family_member_slug,
+    access_level=:access_level
+where family_member_id =:family_member_id";
+$stmt = $link->prepare($sql);
+$stmt -> execute($data);
+
+echo "Editing: ", $editing;
