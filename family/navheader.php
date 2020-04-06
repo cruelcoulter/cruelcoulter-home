@@ -20,6 +20,7 @@
   <li class="nav-item"><a class="nav-link" href="manage_users.php">Manage Users</a></li>
   <li class="nav-item"><a class="nav-link" href="album_manage.php">Manage Albums</a></li>
   <li class="nav-item"><a class="nav-link" href="tag_manage.php">Manage Tags</a></li>
+  <li class="nav-item"><a class="nav-link" href="family_manage.php">Add a family</a></li>
 </ul>
 <ul class="nav navbar-nav navbar-right">
      <li class="nav-item"><a class="nav-link" href="adminpage.php">Admin home</a></li>
